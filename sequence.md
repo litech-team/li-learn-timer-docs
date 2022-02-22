@@ -47,11 +47,14 @@ sequenceDiagram
     participant python as Python Server
     participant client as Raspberry Pi
 
+    Note over client: アラームの停止ボタンが押されるまで待機
     client ->>+ python: タスクの終了をリクエスト<br>(req_finish_task)
     Note over python: タイマーの終了を確認できるまで待機
     Note over python: 実行中のフラグをFalseに
     python ->>- client: タスクの終了を指示<br>(finish_task)
     python ->> server: タスクが終了されたことを通知<br>(finished_task)
+    Note over client: アラームを停止
+    Note over client: タスク表示を次に変更
 ```
 
 ## Web側からタスクを強制終了した時
