@@ -13,9 +13,29 @@ sequenceDiagram
         python ->> client: 適切な指示を出す
         python ->> server: 再接続があったことを通知<br>(reconnected_pi)
     else 実行中のフラグがFalseだったら
-        python ->>+ server: 接続があったことを通知<br>(connected_pi)
-        server ->>- python: タスク一覧を送信<br>(send_tasks)
-        Note over python: タスク情報を処理
+        python ->> server: 接続があったことを通知<br>(connected_pi)
+
+        alt タスクがセットされていれば
+            python ->> client: タスクの準備を指示<br>(ready_task)
+            Note over client: 次のタスクを表示
+        else タスクがセットされていなければ
+            python ->> client: タスクセットのお願いの表示を指示<br>(req_ready_task)
+            Note over client: タスクセットのお願いを表示
+        end
+    end
+```
+
+## Webでタスクをセットした時
+
+```mermaid
+sequenceDiagram
+    participant server as PHP Server
+    participant python as Python Server
+    participant client as Raspberry Pi 
+
+    server ->> python: やるタスクの一覧を送信<br>(send_tasks)
+    Note over python: タスク情報を処理
+    alt ラズパイとの接続があれば
         python ->> client: タスクの準備を指示<br>(ready_task)
         Note over client: 次のタスクを表示
     end
