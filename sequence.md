@@ -54,7 +54,7 @@ sequenceDiagram
     python ->> server: タスクが終了されたことを通知
 ```
 
-## Web側から非常終了をする時
+## Web側からタスクを強制終了した時
 
 ```mermaid
 sequenceDiagram
@@ -62,9 +62,9 @@ sequenceDiagram
     participant python as Python Server
     participant client as Raspberry Pi
 
-    server ->> python: タスクの非常終了を指示
+    server ->> python: タスクの強制終了を指示
     Note over python: 実行中のフラグをFalseに
-    python ->> client: タスクの非常終了を指示
+    python ->> client: タスクの強制終了を指示
 ```
 
 ## 次のタスクの時間が来た時
