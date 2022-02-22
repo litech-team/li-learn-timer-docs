@@ -32,7 +32,7 @@ sequenceDiagram
     Note over python: 実行可能かどうかを調査する
     alt タスクが実行可能だったら
         Note over python: 実行中のフラグをTrueに
-        python ->> client: タスクを開始を指示<br>(start_task)
+        python ->> client: タスクの開始を指示<br>(start_task)
         python ->> server: タスクが開始されたことを通知<br>(started_task)
     else タスクが実行不可だったら
         python ->> client: タスクが実行不可なことを通知<br>(cannot_start_task)
