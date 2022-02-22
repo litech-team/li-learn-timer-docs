@@ -16,7 +16,8 @@ sequenceDiagram
         python ->>+ server: 接続があったことを通知<br>(connected_pi)
         server ->>- python: タスク一覧を送信<br>(send_tasks)
         Note over python: タスク情報を処理
-        python ->> client: 実行可能かの表示を指示<br>(display_task)
+        python ->> client: タスクの準備を指示<br>(ready_task)
+        Note over client: 次のタスクを表示
     end
 ```
 
