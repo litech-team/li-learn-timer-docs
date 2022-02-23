@@ -49,7 +49,7 @@ sequenceDiagram
     participant python as Python Server
     participant client as Raspberry Pi
 
-    client ->> python: タスクの開始をリクエスト
+    client ->> python: タスクの開始をリクエスト<br>(req_start_task)
     Note over python: 実行可能かどうかを調査する
     alt タスクが実行可能だったら
         Note over python: 実行中のフラグをTrueに
